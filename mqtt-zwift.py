@@ -5,6 +5,8 @@ import paho.mqtt.client as mqtt
 import time
 import json
 
+# i know... this is not elegant!
+from settings import *
 
 OFFLINE_MSG = json.dumps({ 'is_online': 0, 'hr': 0, 'power': 0,  'speed': 0.0 })
 

@@ -48,7 +48,10 @@ if __name__ == "__main__":
            #print("error while retrieving player status. Error count = " + str(error))
            if error > 5:
               break 
-         msg_dict = { 'is_online': 1, 'hr': status.heartrate, 'power': status.power,  'speed': float("{:.2f}".format(float(status.speed)/1000000.0)) } 
+         if status.sport == 0:
+             msg_dict = { 'is_online': 1, 'sport': 'cycling', 'hr': status.heartrate, 'power': status.power,  'speed': float("{:.2f}".format(float(status.speed)/1000000.0)) } 
+         elif status.sport == 1:   
+             msg_dict = { 'is_online': 1, 'sport': 'running', 'hr': status.heartrate, 'speed': float("{:.2f}".format(float(status.speed)/1000000.0)) } 
          mqtt_client.publish(mqtt_topic, payload=json.dumps(msg_dict), retain=False)
          time.sleep(10)
    else:
